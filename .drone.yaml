@@ -10,15 +10,15 @@ workspace:
 steps:
 - name: build
   image: golang:1.13
-  command:
-  - go test ./...
+  commands:
+    - go test ./...
 
 - name: build
   image: golang:1.13
   environment:
     - GOOS=linux
     - GOARCH=amd64
-  command:
+  commands:
     - go build
 
 trigger:
