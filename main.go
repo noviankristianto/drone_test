@@ -12,5 +12,6 @@ func main() {
 }
 
 func greetingHandler(w http.ResponseWriter, r *http.Request) {
+	// test
 	fmt.Fprintf(w, "Hi there, my name is %s", r.URL.Path[1:])
 }
