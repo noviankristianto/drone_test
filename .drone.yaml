@@ -2,12 +2,24 @@
 kind: pipeline
 name: default
 
+
+workspace:
+  base: /src
+  path: ${DRONE_REPO_NAME}
+
 steps:
 - name: build
   image: golang:1.13
   command:
-  - go test
-  - go build
+  - go test ./...
+
+- name: build
+  image: golang:1.13
+  environment:
+    - GOOS=linux
+    - GOARCH=amd64
+  command:
+    - go build
 
 trigger:
   branch:
