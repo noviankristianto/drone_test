@@ -11,15 +11,15 @@ steps:
 - name: build
   image: golang:1.13
   commands:
-    - go test ./...
+  - go test ./...
 
 - name: build
   image: golang:1.13
   environment:
-    - GOOS=linux
-    - GOARCH=amd64
+    GOOS=linux
+    GOARCH=amd64
   commands:
-    - go build
+  - go build
 
 trigger:
   branch:
