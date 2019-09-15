@@ -5,17 +5,11 @@ workspace:
 pipeline:
   test:
     image: golang:1.13
-    volumes:
-      - name: deps
-        path: /go
     commands:
       - go test ./...
 
   build:
     image: golang:1.13
-    volumes:
-      - name: deps
-        path: /go
     environment:
       - GOOS=linux
       - GOARCH=amd64
