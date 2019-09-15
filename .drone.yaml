@@ -1,36 +1,23 @@
----
-kind: pipeline
-name: default
-
-
 workspace:
   base: /src
   path: ${DRONE_REPO_NAME}
 
-steps:
-- name: test
-  image: golang:1.13
-  volumes:
-  - name: deps
-    path: /go
-  commands:
-  - go test ./...
+pipeline:
+  test:
+    image: golang:1.13
+    volumes:
+      - name: deps
+        path: /go
+    commands:
+      - go test ./...
 
-- name: build
-  image: golang:1.13
-  volumes:
-  - name: deps
-    path: /go
-  environment:
-    GOOS: linux
-    GOARCH: amd64
-  commands:
-  - go build
-
-volumes:
-- name: deps
-  temp: {}
-
-when:
-  event:
-  - pull_request
+  build:
+    image: golang:1.13
+    volumes:
+      - name: deps
+        path: /go
+    environment:
+      - GOOS=linux
+      - GOARCH=amd64
+    commands:
+      - go build
