@@ -27,10 +27,10 @@ steps:
   commands:
   - go build
 
+trigger:
+  branch:
+  - master
+
 volumes:
 - name: deps
   temp: {}
-
-when:
-  event:
-  - pull_request
