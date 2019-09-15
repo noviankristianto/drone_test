@@ -7,6 +7,7 @@ import (
 )
 
 func main() {
+	// test
 	http.HandleFunc("/", greetingHandler)
 	log.Fatal(http.ListenAndServe(":8989", nil))
 }
