@@ -22,13 +22,9 @@ pipeline:
 
   publish:
     image: plugins/docker
-    settings:
-      repo: nkristianto/drone_test
-      tags: [ "nkristianto/drone_test:${DRONE_COMMIT_SHA:0:4}" ]
-      username:
-        from_secret: docker_username
-      password:
-        from_secret: docker_password
+    repo: nkristianto/drone_test
+    tags: [ "${DRONE_COMMIT_SHA:0:4}" ]
+    secrets: [ docker_username, docker_password ]
     when:
       event: [ push ]
       branch: master
