@@ -42,7 +42,7 @@ pipeline:
       - echo $GOOGLE_CREDENTIALS | base64 --decode > key.json
       - gcloud auth activate-service-account --key-file key.json
       - gcloud container clusters get-credentials $CLUSTER_NAME
-      - kubectl set image deployment/drone-test drone-test=nkristianto/drone_test:${DRONE_COMMIT_SHA:0:4}
+      - kubectl set image deployment/drone-test drone-test=nkristianto/drone_test:${DRONE_COMMIT_SHA:0:4} --record=true
     when:
       event: [ push ]
       branch: master
