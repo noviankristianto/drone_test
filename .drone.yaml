@@ -28,3 +28,21 @@ pipeline:
     when:
       event: [ push ]
       branch: master
+
+  deploy:
+    image: Google/cloud-sdk:latest
+    environment:
+      PROJECT_ID: alert-study-230716
+      COMPUTE_ZONE: asia-southeast1-a
+      CLUSTER_NAME: k8s-server
+    secrets: [ GOOGLE_CREDENTIALS ]
+    commands:
+      - gcloud config set project $PROJECT_ID
+      - gcloud config set compute/zone $COMPUTE_ZONE
+      - echo $GOOGLE_CREDENTIALS > key.json
+      - gcloud auth activate-service-account --key-file key.json
+      - gcloud container clusters get-credentials $CLUSTER_NAME
+      - kubectl set image deployment/drone-test deployment/drone-test=nkristianto/drone_test:${DRONE_BUILD_NUMBER}
+    when:
+      event: [ push ]
+      branch: master
