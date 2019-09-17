@@ -5,13 +5,25 @@ workspace:
 pipeline:
   test:
     image: golang:1.13
+    volumes:
+      - name: deps
+        path: /go
     commands:
       - go test ./...
+    when:
+      event:
+        - pull_request
 
   build:
     image: golang:1.13
+    volumes:
+      - name: deps
+        path: /go
     environment:
       - GOOS=linux
       - GOARCH=amd64
     commands:
       - go build
+    when:
+      event:
+        - pull_request
