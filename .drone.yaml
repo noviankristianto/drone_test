@@ -30,7 +30,7 @@ pipeline:
       branch: master
 
   deploy:
-    image: Google/cloud-sdk:latest
+    image: google/cloud-sdk:latest
     environment:
       PROJECT_ID: alert-study-230716
       COMPUTE_ZONE: asia-southeast1-a
