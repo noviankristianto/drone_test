@@ -33,8 +33,8 @@ pipeline:
     image: google/cloud-sdk:latest
     environment:
       PROJECT_ID: alert-study-230716
-      COMPUTE_ZONE: asia-southeast1-a
-      CLUSTER_NAME: k8s-master
+      COMPUTE_ZONE: asia-southeast1-b
+      CLUSTER_NAME: k8s-playground
     secrets: [ GOOGLE_CREDENTIALS ]
     commands:
       - gcloud config set project $PROJECT_ID
