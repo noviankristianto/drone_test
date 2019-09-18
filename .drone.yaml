@@ -34,7 +34,7 @@ pipeline:
     environment:
       PROJECT_ID: alert-study-230716
       COMPUTE_ZONE: asia-southeast1-a
-      CLUSTER_NAME: k8s-server
+      CLUSTER_NAME: k8s-master
     secrets: [ GOOGLE_CREDENTIALS ]
     commands:
       - gcloud config set project $PROJECT_ID
