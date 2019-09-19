@@ -3,15 +3,32 @@ workspace:
   path: ${DRONE_REPO_NAME}
 
 pipeline:
-  test:
+  test-golang-1.13:
     image: golang:1.13
     commands:
       - go test ./...
     when:
       event: pull_request
 
-  build:
+  build-golang-1.13:
     image: golang:1.13
+    environment:
+      - GOOS=linux
+      - GOARCH=amd64
+    commands:
+      - go build
+    when:
+      event: pull_request
+
+  test-golang-1.12:
+    image: golang:1.12
+    commands:
+      - go test ./...
+    when:
+      event: pull_request
+
+  build-golang-1.12:
+    image: golang:1.12
     environment:
       - GOOS=linux
       - GOARCH=amd64
